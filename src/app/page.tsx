@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-
 export default function Home() {
   const print = () => {
     const pdfUrl =
@@ -9,39 +7,9 @@ export default function Home() {
     window.open(pdfUrl);
   };
 
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let maxVisibleSection = activeSection;
-        let maxVisibility = 0;
-
-        entries.forEach((entry) => {
-          const visibleRatio = entry.intersectionRatio;
-
-          if (visibleRatio > maxVisibility) {
-            maxVisibility = visibleRatio;
-            maxVisibleSection = entry.target.id;
-          }
-        });
-
-        setActiveSection(maxVisibleSection);
-      },
-      {
-        threshold: [0.2, 0.5, 0.8],
-        rootMargin: "-10% 0px -60% 0px",
-      }
-    );
-
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
   return (
     <div className="flex flex-col min-h-screen">
-      <nav className="flex items-center p-4 justify-between  sticky top-0 z-50">
+      {/* <nav className="flex items-center p-4 justify-between  sticky top-0 z-50">
         <span></span>
         <div className="flex gap-4">
           <a
@@ -75,7 +43,7 @@ export default function Home() {
             CONTACT
           </a>
         </div>
-      </nav>
+      </nav> */}
       <section
         id="home"
         className="flex flex-col items-center justify-center min-h-screen gap-8 p-12 overflow-auto"
@@ -89,6 +57,12 @@ export default function Home() {
             I love finding simple solutions to complex problems.
           </p>
         </div>
+        <a
+          href="#projects"
+          className="p-4 rounded-full border-2 border-[#73818C] text-[#73818C] hover:bg-[#73818C] hover:text-black drop-shadow-dark"
+        >
+          MY WORK
+        </a>
       </section>
       <section
         id="projects"
@@ -243,9 +217,9 @@ export default function Home() {
 
         <button
           onClick={print}
-          className="rounded-xl bg-blue-500 hover:bg-blue-600 p-4 lg:w-[250px] drop-shadow-md w-full"
+          className="p-4 lg:w-[250px] w-full rounded-full border-2 border-[#73818C] text-[#73818C] hover:bg-[#73818C] hover:text-black drop-shadow-dark"
         >
-          Print CV
+          PRINT CV
         </button>
       </section>
     </div>
