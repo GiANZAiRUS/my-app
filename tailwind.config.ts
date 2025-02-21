@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      dropShadow: {
+        dark: "0 4px 6px rgba(255, 255, 255, 0.15)",
+      },
     },
   },
   plugins: [],
